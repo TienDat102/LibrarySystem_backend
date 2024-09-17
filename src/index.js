@@ -13,7 +13,7 @@ const requireAuth = require('./middlewares/authMiddleware')
 
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://library-system-frontend-coral.vercel.app/",
     methods: ["POST,GET,PUT,DELETE,PATCH"],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']

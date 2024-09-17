@@ -37,10 +37,15 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await User.login(email, password)
-        const token = createToken(user._id)
-        res.cookie('jwt', token, { httpOnly: false, path: "/" })
-        console.log('Set-Cookie Header:', parse(res.getHeader('Set-Cookie')));
+        const user = await User.login(email, password);
+        const token = createToken(user._id);
+        res.cookie('jwt', token, {
+            httpOnly: true,  
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'None', 
+            path: "/",
+            maxAge: maxAge * 1000 
+        });
         return res.status(200).json({
             message: "Đăng nhập thành công",
             success: true,
@@ -51,6 +56,7 @@ const loginUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "Đăng nhập thất bại", success: false, error });
     }
 });
+
 const logoutUser = async (req, res) => {
     res.clearCookie('jwt', { path: '/' });
     res.status(200).json({ message: 'Đăng xuất thành công!' });

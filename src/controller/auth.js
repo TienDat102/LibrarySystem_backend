@@ -39,7 +39,7 @@ const loginUser = asyncHandler(async (req, res) => {
     try {
         const user = await User.login(email, password)
         const token = createToken(user._id)
-        res.cookie('jwt', token, { httpOnly: false, path: "/" })
+        res.cookie('jwt', token, { httpOnly: false, secure: true, path: "/" })
         console.log('Set-Cookie Header:', parse(res.getHeader('Set-Cookie')));
         return res.status(200).json({
             message: "Đăng nhập thành công",

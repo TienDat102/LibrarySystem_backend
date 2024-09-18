@@ -11,9 +11,9 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const requireAuth = require('./middlewares/authMiddleware')
 
-
+// https://librarysystem-nhom5.vercel.app
 app.use(cors({
-    origin: "https://librarysystem-nhom5.vercel.app",
+    origin: "http://localhost:3000",
     methods: ["POST,GET,PUT,DELETE,PATCH"],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']

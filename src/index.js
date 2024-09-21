@@ -11,7 +11,7 @@ const cors = require('cors');
 
 // CORS configuration
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://librarysystem-nhom5.vercel.app",
     methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']

@@ -34,7 +34,7 @@ const getRecommend = async (req, res) => {
             const pipeline = [
                 { $group: { _id: "$book", count: { $sum: 1 } } },
                 { $sort: { count: -1 } },
-                { $limit: 2 }
+                { $limit: 4 }
             ]
             const popurlarBooks = await Borrow.aggregate(pipeline);
             const popurlarBooksId = popurlarBooks.map(book => book._id);
